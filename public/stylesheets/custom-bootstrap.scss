@@ -1,0 +1,13 @@
+$theme-colors: (
+        "primary": #1d2469,
+        "secondary": #aa3251,
+        "success": #00ff00
+);
+
+//Custom fix for dropdown menu not showing on click
+.show > .dropdown-menu {
+  display: block;
+  position: absolute;
+}
+
+@import "../../bootstrap/scss/bootstrap";
