@@ -6,16 +6,20 @@ router
     .get('/', function (req, res, next) {
         res.render('pages/index');
     })
-    .get('/population', function (req, res, next) {
-        res.render('pages/population');
-    })
-    .get("/convoy/:id", function (req, res, next) {
+    .get("/nomad/:firstName", function (req, res, next) {
         axios.get("http://cunning-convoys.azurewebsites.net/api/Convoys").then(response => {
-            let searchedConvoy = response.data.find(convoy => {
-                return convoy.id === req.params.id;
-            });
-            res.render("pages/convoy", {convoy: searchedConvoy});
-        })
+            for(let convoyIndex = 0; convoyIndex < response.data.length; convoyIndex++){
+                for(let vehicleIndex = 0; vehicleIndex < response.data[convoyIndex].vehicles.length; vehicleIndex++){
+                    for(let nomadIndex = 0; nomadIndex < response.data[convoyIndex].vehicles[vehicleIndex].nomads.length; nomadIndex++){
+                        if(response.data[convoyIndex].vehicles[vehicleIndex].nomads[nomadIndex].firstName === req.params.firstName){
+                            nomadToFind = response.data[convoyIndex].vehicles[vehicleIndex].nomads[nomadIndex];
+                            break;
+                        }
+                    }
+                }
+            }
+            res.render("pages/nomad", {nomad: nomadToFind});
+        });
     })
     .get("/convoys", function (req, res, next) {
         axios.get("http://cunning-convoys.azurewebsites.net/api/Convoys").then(response => {

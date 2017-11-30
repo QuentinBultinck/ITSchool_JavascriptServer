@@ -96,5 +96,5 @@ const gInterface = {
 $(document).ready(function () {
     gInterface.bindEvents();
     gInterface.initMap();
-    setInterval(gInterface.initMap, 10*1000);
+    // setInterval(gInterface.initMap, 10*1000);
 });
