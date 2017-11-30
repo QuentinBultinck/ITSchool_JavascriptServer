@@ -22,7 +22,7 @@
                 <ul class="list-group">
                     <% convoy.vehicles.forEach(vehicle => { %>
                     <li class="list-group-item">
-                        <a href=<%= "/owner/" + vehicle.licensePlate %>>License Plate <%= vehicle.licensePlate %></a>
+                        <a class="btn btn-primary my-2" href=<%= "/owner/" + vehicle.licensePlate %>>License Plate <%= vehicle.licensePlate %></a>
                         <h6>Nomads:</h6>
                         <ul class="list-group">
                             <% vehicle.nomads.forEach(nomad => { %>

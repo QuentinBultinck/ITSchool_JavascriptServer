@@ -28,11 +28,15 @@ const gInterface = {
         ajaxCalls.getCities().then(citiesData => {
             let arrayData = [['City', 'Properties']];
             citiesData.forEach(item => {
+                let density = Math.round(item.population / item.area);
+                if(density > 8500) {
+                    gInterface.showAlert(item.name ,density);
+                }
                 arrayData.push(
                     [item.name, "<strong>" + item.name + " (" + item.country + ")</strong><br />" +
                     "Population: " + item.population + "<br />" +
                     "Area: " + item.area + "<br/>" +
-                    "Density: " + Math.round(item.population / item.area) + " people / km²"]);
+                    "Density: " + density + " people / km²"]);
             });
 
             google.charts.load('current', {'packages': ['map']});
@@ -80,6 +84,12 @@ const gInterface = {
     },
     bindEvents: function () {
         let self = this;
+    },
+    showAlert: function (city, density) {
+        let $alertModal = $('#alertModal');
+        $alertModal.find(".city").text(city);
+        $alertModal.find(".density").text(density);
+        $alertModal.modal('show');
     }
 };
 
