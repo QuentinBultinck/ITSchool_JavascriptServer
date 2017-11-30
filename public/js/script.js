@@ -90,11 +90,20 @@ const gInterface = {
         $alertModal.find(".city").text(city);
         $alertModal.find(".density").text(density);
         $alertModal.modal('show');
+    },
+    initAutoComplete: function () {
+        ajaxCalls.getNomadsNames().then(nomadNames => {
+            $( "#search" ).autocomplete({
+                source: nomadNames
+            });
+        });
+
     }
 };
 
 $(document).ready(function () {
     gInterface.bindEvents();
     gInterface.initMap();
+    gInterface.initAutoComplete();
     // setInterval(gInterface.initMap, 10*1000);
 });

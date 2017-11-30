@@ -25,5 +25,14 @@ const ajaxCalls = {
                 }
             });
         });
+    },
+    getNomadsNames: function () {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: "localhos:3000/api/nomadNames", success: function (result) {
+                    resolve(result);
+                }
+            });
+        });
     }
 };
