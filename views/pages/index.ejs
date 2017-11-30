@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hacking The Future | Home </title>
+    <title>Convoys | Home </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel='stylesheet' href='/stylesheets/bootstrap-social-5.1.1.min.css'/>
     <link rel='stylesheet' href='/stylesheets/custom-bootstrap.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
 
 <%- include ../partials/header.ejs %>
-<div class="container">
-    <h1>Hack The Future</h1>
+<div class="container-fluid">
+    <div id="map"></div>
 </div>
 
 <%- include ../partials/footer.ejs %>
 
+<script src="/js/loader.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
 <script src="/js/script.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Kh2SktbSoAyR_8XeVaSqBKo6340URXk"
+        type="text/javascript"></script>
 <script src="/js/tether.min.js"></script>
 <script src="/js/popper-1.12.6.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
