@@ -84,6 +84,10 @@ const gInterface = {
     },
     bindEvents: function () {
         let self = this;
+        $("form").on("submit", function (e) {
+            e.preventDefault();
+            window.location = "http://localhost:3000/nomad/" + $("#search").val();
+        })
     },
     showAlert: function (city, density) {
         let $alertModal = $('#alertModal');
