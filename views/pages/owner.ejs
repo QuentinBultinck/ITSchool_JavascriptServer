@@ -11,12 +11,13 @@
 <body>
 
 <%- include ../partials/header.ejs %>
-<div class="container-fluid">
-    <div class="col m-2"><h1 class="text-center">Convoys & Cities</h1>
-        <div class="map" id="map"></div>
-    </div>
-    <div class="col m-2"><h1 class="text-center">Population</h1>
-        <div class="map" id="geomap"></div>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"><%= licensePlate %></h4>
+            <p>Owner: <%= owner.firstName + " " + owner.lastName %></p>
+        </div>
     </div>
 </div>
 
@@ -24,8 +25,6 @@
 
 <script src="/js/loader.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
-<script src="/js/ajaxCalls.js"></script>
-<script src="/js/script.js"></script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Kh2SktbSoAyR_8XeVaSqBKo6340URXk"
         type="text/javascript"></script>
 <script src="/js/tether.min.js"></script>

@@ -1,7 +1,31 @@
 const gInterface = {
     initMap: function () {
+        ajaxCalls.getCities().then(data => {
+            let arrayData = [['City', 'Population', "Area"]];
+            data.forEach(item => {
+                arrayData.push(
+                    [item.name, item.population, item.area]);
+            });
+
+            google.charts.load('current', {
+                'packages': ['geochart'],
+                'mapsApiKey': 'AIzaSyC6Kh2SktbSoAyR_8XeVaSqBKo6340URXk'
+            });
+            google.charts.setOnLoadCallback(drawMarkersMap);
+
+            function drawMarkersMap() {
+                let data = google.visualization.arrayToDataTable(arrayData);
+
+                let options = {
+                    displayMode: 'markers',
+                    colorAxis: {colors: ['#1d2469', '#aa3251']}
+                };
+
+                let chart = new google.visualization.GeoChart(document.getElementById('geomap'));
+                chart.draw(data, options);
+            }
+        });
         ajaxCalls.getCities().then(citiesData => {
-            console.log(citiesData);
             let arrayData = [['City', 'Properties']];
             citiesData.forEach(item => {
                 arrayData.push(
@@ -62,4 +86,5 @@ const gInterface = {
 $(document).ready(function () {
     gInterface.bindEvents();
     gInterface.initMap();
+    setInterval(gInterface.initMap, 10*1000);
 });

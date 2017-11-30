@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Convoys | Home </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel='stylesheet' href='/stylesheets/bootstrap-social-5.1.1.min.css'/>
+    <link rel='stylesheet' href='/stylesheets/custom-bootstrap.css'/>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+
+<%- include ../partials/header.ejs %>
+<div class="container">
+        <% convoys.forEach(convoy => { %>
+        <div class="card my-2 bg-light">
+            <div class="card-body">
+                <h4 class="card-title">Convoy <%= convoy.id %></h4>
+                <h5 class="card-subtitle mb-2 text-muted">Heading to <%= convoy.destinationCity %>,
+                    <%= Math.round(convoy.distanceFromCityBorder) %>km from city</h5>
+                <h6>Vehicles:</h6>
+                <ul class="list-group">
+                    <% convoy.vehicles.forEach(vehicle => { %>
+                    <li class="list-group-item">
+                        <a href=<%= "/owner/" + vehicle.licensePlate %>>License Plate <%= vehicle.licensePlate %></a>
+                        <h6>Nomads:</h6>
+                        <ul class="list-group">
+                            <% vehicle.nomads.forEach(nomad => { %>
+                            <li class="list-group-item"><%= nomad.firstName + " " + nomad.lastName %></li>
+                            <% }) %>
+                        </ul>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <% }) %>
+</div>
+
+<%- include ../partials/footer.ejs %>
+
+<script src="/js/loader.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Kh2SktbSoAyR_8XeVaSqBKo6340URXk"
+        type="text/javascript"></script>
+<script src="/js/tether.min.js"></script>
+<script src="/js/popper-1.12.6.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

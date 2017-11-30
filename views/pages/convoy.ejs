@@ -11,31 +11,16 @@
 <body>
 
 <%- include ../partials/header.ejs %>
-<div class="container-fluid">
+<div class="card" style="width: 20rem;">
+    <div class="card-body">
+        <h4 class="card-title"><%= convoy.id %></h4>
+    </div>
 </div>
 
 <%- include ../partials/footer.ejs %>
 
 <script src="/js/loader.js"></script>
 <script src="/js/jquery-3.2.1.min.js"></script>
-<script src="/js/ajaxCalls.js"></script>
-<script type="application/javascript">
-    const gInterface = {
-        init: function () {
-            $.get({
-                url: "http://cunning-convoys.azurewebsites.net/api/Convoys",
-            });
-        },
-        bindEvents: function () {
-            let self = this;
-        }
-    };
-
-    $(document).ready(function () {
-        gInterface.bindEvents();
-        gInterface.init();
-    });
-</script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Kh2SktbSoAyR_8XeVaSqBKo6340URXk"
         type="text/javascript"></script>
 <script src="/js/tether.min.js"></script>
