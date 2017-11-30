@@ -7,5 +7,10 @@ router.get('/', function (req, res, next) {
 }).get('/population', function (req, res, next) {
     res.render('pages/population');
 });
+//     .get("/nomad/:firstname", function (req, res, next) {
+//     axios.get("http://cunning-convoys.azurewebsites.net/api/Convoys").then(response => {
+//         response.data
+//     })
+// });
 
 module.exports = router;
