@@ -7,17 +7,38 @@ const ajaxCalls = {
                 }
             });
         });
+    },
+    getConvoys: function() {
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: "http://cunning-convoys.azurewebsites.net/api/Convoys", success: function (result) {
+                    resolve(result);
+                }
+            });
+        });
+    },
+    getNomads: function(){
+        return new Promise(function (resolve, reject) {
+            $.ajax({
+                url: "http://cunning-convoys.azurewebsites.net/api/Dmv", success: function (result) {
+                    resolve(result);
+                }
+            });
+        });
     }
 };
 
 const gInterface = {
     initMap: function () {
-        ajaxCalls.getCities().then(data => {
-            console.log(data);
-            let arrayData = [['Country', 'Population Density']];
-            data.forEach(item => {
+        ajaxCalls.getCities().then(citiesData => {
+            console.log(citiesData);
+            let arrayData = [['City', 'Properties']];
+            citiesData.forEach(item => {
                 arrayData.push(
-                    [item.country, "Population Density: " + Math.round(item.population / item.area) + " people / km²"]);
+                    [item.name, "<strong>" + item.name + " (" + item.country + ")</strong><br />" +
+                    "Population: " + item.population + "<br />" +
+                    "Area: " + item.area + "<br/>" +
+                    "Density: " + Math.round(item.population / item.area) + " people / km²"]);
             });
 
             google.charts.load('current', {'packages': ['map']});
