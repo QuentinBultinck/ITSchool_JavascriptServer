@@ -7,17 +7,17 @@ const ajaxCalls = {
                 }
             });
         });
-    },
+    }
 };
 
 const gInterface = {
     initMap: function () {
         ajaxCalls.getCities().then(data => {
             console.log(data);
-            let arrayData = [['Country', 'Population']];
+            let arrayData = [['Country', 'Population Density']];
             data.forEach(item => {
                 arrayData.push(
-                    [item.country, "Population: " + item.population]);
+                    [item.country, "Population Density: " + Math.round(item.population / item.area) + " people / km²"]);
             });
 
             google.charts.load('current', {'packages': ['map']});
